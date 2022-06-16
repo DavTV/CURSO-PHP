@@ -8,42 +8,68 @@
 
     <!-- Bootstrap CSS v5.0.2 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <style>
-        body{
-            background: linear-gradient(to left, blue, white);
-        }
-    </style>
+    
   </head>
-  <body>
-      <div class="container p-5 w-50  text-white">
-      <h1 class="text-center">Vender Producto</h1>
-        <a href="reporte.php" class="mb-4">Reporte</a>
-            <form class="">
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Producto</label>
-                    <input type="text" class="form-control">
-                   
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Categoría</label>
-                    <input type="text" class="form-control">
-                   
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Precio</label>
-                    <input type="number" class="form-control" step="any">
-                   
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Cantidad</label>
-                    <input type="number" class="form-control">
-                   
-                </div>
+  <body class="bg-success text-white">
+      
+    <div class="container">
+        <h1 class="text-center border-bottom border-2 py-2 my-3">Publish Products</h1>
+        <form action="" class="w-75 shadow rounded mt-5 p-3 mx-auto " method="POST"
+        enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="" class="label-control mb-2">Name of product</label>
+                <input type="text" class="form-control " name="name">
+            </div>
+            <div class="mb-3">
+                <label for="" class="label-control mb-2">Price of product</label>
+                <input type="number" class="form-control mb-2 " name="price">
+            </div>
+            <div class="mb-3">
+                <label for="" class="label-control mb-2" >Category of product</label>
+                <select name="category" id="" class="form-select">
+                    <option value="">Choose a category</option>
+                    <option value="meat">Meat</option>
+                    <option value="vegetable">Vegetable</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="" class="label-control  mb-2">Image of product</label>
+                <input type="file" class="form-control" name="image">
+            </div>
+            <div class="mb-3">
+                <input type="submit"  name="send" value="Send Product" class="btn btn-warning text-white">
+            </div>
+        </form>
+    </div>
 
-                
-                <button type="submit" class="btn btn-success">Vender</button>
-            </form>
-      </div>
-   
+    <div class="container mt-3">
+            <div class="row">
+    <?php
+        include("PHP/CheckForm.php");
+        include("PHP/ShowProducts.php");
+        if($result){
+            while($fila = $result ->fetch_assoc()){
+                ?>
+                        <div class="col-6 col-md-4 my-3">
+                        <div class="card text-dark">
+                            <img class="card-img-top" src="<?php echo $fila["imagen"] ?>" alt="<?php echo $fila["nombre"] ?>">
+                            <div class="card-body">
+                                <h4 class="card-title"><?php echo $fila["producto"] ?></h4>
+                                <p class="card-text"><?php echo $fila["categoria"] ?></p>
+                                <p class="card-text">S/ <?php echo $fila["precio"] ?></p>
+                                <button class="btn btn-warning">Buy Product</button>
+                            </div>
+                        </div>
+                        </div>
+                   
+                <?php
+
+            }
+        }
+
+    ?>
+        </div>
+    </div>
+
   </body>
 </html>
