@@ -7,7 +7,7 @@
             $priceProduct = $_POST["price"];
             $categoryProduct = $_POST["category"];
 
-            //Get value of image
+            // Get value of image
 
             $imageNameProduct = $_FILES["image"]["name"];
             $imageTypeProduct = $_FILES["image"]["type"];
